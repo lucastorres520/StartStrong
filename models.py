@@ -4,9 +4,6 @@ from sqlalchemy.orm import relationship, declarative_base
 Base = declarative_base()
 
 class User(Base):
-    """
-    User model representing users in the database.
-    """
     __tablename__ = "users"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -17,9 +14,6 @@ class User(Base):
     items = relationship("Item", back_populates="owner")
 
 class Item(Base):
-    """
-    Item model representing items owned by users.
-    """
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)
