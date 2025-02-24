@@ -22,3 +22,11 @@ def test_read_items():
     response = client.get("/items/")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
+def test_create_user_duplicate():
+    response = client.post("/users/", json={"name": "Test", "email": "test@example.com", "password": "pass123"})
+    assert response.status_code == 400
+
+def test_create_item_invalid_owner():
+    response = client.post("/items/", json={"name": "Item1", "owner_id": 999})
+    assert response.status_code == 400
